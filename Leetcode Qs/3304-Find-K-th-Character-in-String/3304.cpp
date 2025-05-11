@@ -4,7 +4,9 @@
 class Solution {
     public:
         char kthCharacter(int k) {
-            std::string word = "a";
+
+            //- First intuition with an easy logic
+            /* std::string word = "a";
 
             while(word.length() < k)
             {
@@ -21,7 +23,17 @@ class Solution {
                 word += temp;
             }
 
-            return word.at(k-1);
+            return word.at(k-1); */
+
+            //- Count no. of 1s (binary rep.) in k and apply increment to 'a'
+            
+            k--;
+            int increments = 0;
+            while (k > 0) {
+                increments += k & 1;
+                k >>= 1;
+            }
+            return 'a' + (increments % 26);  
         }
 };
 
